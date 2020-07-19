@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, SafeAreaView } from 'react-native'
 import MovieList from '../components/MovieList'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import { useSelector } from 'react-redux'
 
 import useMovieFetcher from '../services/useMovieFetcher'
 import getEnvVars from '../../environment'
+import SearchbarComponent from '../components/SearchbarComponent'
 
 const { apiKey } = getEnvVars()
 
 const Search = () => {
-    const [searchTerm, setSearchTerm] = useState('')
+    const searchTerm = useSelector((store) => store.searchTerm)
     const [{ data, isLoading, isError }, doFetch] = useMovieFetcher()
 
-    const handlePress = () => {
-        doFetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=Super`)
+    const handleIconPress = () => {
+        doFetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm.searchTerm}`)
     }
 
     // if (isError) {
@@ -21,16 +23,16 @@ const Search = () => {
     // }
 
     return (
-        <View>
-            <TouchableOpacity onPress={handlePress} style={{ marginTop: 40 }}>
-                <Text>SearchBar</Text>
-            </TouchableOpacity>
+        <SafeAreaView>
+            <View style={{ justifyContent: 'center', marginTop: 40, marginLeft: 10, marginRight: 10 }}>
+                <SearchbarComponent handleIconPress={handleIconPress} />
+            </View>
 
             <ScrollView>
                 {data && <MovieList movies={data.results} />}
 
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 
