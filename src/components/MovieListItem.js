@@ -3,25 +3,33 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+import { CustomText, CustomTextBold } from '../utils/CustomText'
+
 
 
 // http://image.tmdb.org/t/p/w185/
 
-const MovieListItem = ({ title, id, overview, poster_path }) => {
+const MovieListItem = ({ title, id, overview, poster_path, release_date, vote_average, backdrop_path }) => {
     const navigation = useNavigation();
     let imgUrl = 'http://image.tmdb.org/t/p/w92/' + poster_path
 
     return (
 
-        <TouchableOpacity onPress={() => navigation.navigate('MovieDetail')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MovieDetail', {
+            title,
+            backdrop_path,
+            overview,
+            release_date,
+            vote_average
+        })}>
             <View style={styles.container}>
                 <View>
 
                     <Image source={{ uri: imgUrl }} style={styles.cardImage} />
                 </View>
                 <View style={styles.cardText}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.overview} numberOfLines={3}>{overview}</Text>
+                    <CustomTextBold style={styles.title}>{title}</CustomTextBold>
+                    <CustomText style={styles.overview} numberOfLines={3}>{overview}</CustomText>
                 </View>
 
             </View>

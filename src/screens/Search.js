@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, SafeAreaView } from 'react-native'
 import MovieList from '../components/MovieList'
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native-gesture-handler'
 import { useSelector } from 'react-redux'
+import Constants from 'expo-constants'
 
 import useMovieFetcher from '../services/useMovieFetcher'
 import getEnvVars from '../../environment'
@@ -27,7 +28,7 @@ const Search = () => {
 
         <SafeAreaView>
 
-            <View style={{ justifyContent: 'center', marginTop: 40, marginLeft: 10, marginRight: 10 }}>
+            <View style={{ justifyContent: 'center', marginTop: Constants.statusBarHeight + 10, marginLeft: 10, marginRight: 10 }}>
                 <SearchbarComponent handleIconPress={handleIconPress} />
             </View>
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { View, SafeAreaView, Text } from 'react-native'
-import MovieList from '../components/MovieList'
+import { SafeAreaView } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
+import MovieList from '../components/MovieList'
 import useMovieFetcher from '../services/useMovieFetcher'
 import getEnvVars from '../../environment'
 
@@ -21,10 +21,8 @@ const Home = () => {
 
     return (
         <SafeAreaView>
-
             <ScrollView>
                 {data && <MovieList movies={data.results} />}
-
             </ScrollView>
         </SafeAreaView>
     )

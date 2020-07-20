@@ -16,7 +16,7 @@ const HomeRoutes = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} options={{ headerTitle: "Now Playing" }} />
-            <Stack.Screen name="MovieDetail" component={MovieDetail} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} options={({ route }) => ({ title: route.params.title })} />
 
         </Stack.Navigator>
     )
@@ -26,7 +26,7 @@ const SearchRoutes = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
-            <Stack.Screen name="MovieDetail" component={MovieDetail} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} options={({ route }) => ({ title: route.params.title })} />
 
         </Stack.Navigator>
     )
@@ -35,9 +35,9 @@ const SearchRoutes = () => {
 const GenreRoutes = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Genres" component={Genres} options={{ headerShown: false }} />
-            <Stack.Screen name="MovieDetail" component={MovieDetail} />
-            <Stack.Screen name="GenreList" component={GenreList} />
+            <Stack.Screen name="Genres" component={Genres} options={{ headerTitle: "Browse by Genre" }} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} options={({ route }) => ({ title: route.params.title })} />
+            <Stack.Screen name="GenreList" component={GenreList} options={({ route }) => ({ title: route.params.genreName + ' Movies' })} />
         </Stack.Navigator>
     )
 }
