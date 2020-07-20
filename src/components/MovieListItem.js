@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { Card, Title, Paragraph } from 'react-native-paper';
 import { Text, View, StyleSheet, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 // http://image.tmdb.org/t/p/w185/
 
 const MovieListItem = ({ title, id, overview, poster_path }) => {
+    const navigation = useNavigation();
     let imgUrl = 'http://image.tmdb.org/t/p/w92/' + poster_path
+
     return (
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('MovieDetail')}>
             <View style={styles.container}>
                 <View>
 
@@ -22,6 +26,7 @@ const MovieListItem = ({ title, id, overview, poster_path }) => {
 
             </View>
         </TouchableOpacity>
+
     )
 }
 

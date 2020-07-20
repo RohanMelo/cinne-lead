@@ -8,6 +8,7 @@ import useMovieFetcher from '../services/useMovieFetcher'
 import getEnvVars from '../../environment'
 import SearchbarComponent from '../components/SearchbarComponent'
 
+
 const { apiKey } = getEnvVars()
 
 const Search = () => {
@@ -23,7 +24,9 @@ const Search = () => {
     // }
 
     return (
+
         <SafeAreaView>
+
             <View style={{ justifyContent: 'center', marginTop: 40, marginLeft: 10, marginRight: 10 }}>
                 <SearchbarComponent handleIconPress={handleIconPress} />
             </View>
@@ -33,6 +36,7 @@ const Search = () => {
 
             </ScrollView>
         </SafeAreaView>
+
     )
 }
 

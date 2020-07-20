@@ -3,6 +3,7 @@ import { View } from 'react-native'
 
 import MovieListItem from './MovieListItem'
 
+
 const MovieList = ({ movies }) => {
 
     return (

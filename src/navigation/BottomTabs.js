@@ -1,12 +1,46 @@
 import * as React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { createStackNavigator } from '@react-navigation/stack'
 
+import MovieDetail from '../screens/MovieDetail'
 import Home from '../screens/Home'
 import Search from '../screens/Search'
+import GenreList from '../screens/GenreList'
 import Genres from '../screens/Genres'
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator()
+const Stack = createStackNavigator()
+
+const HomeRoutes = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{ headerTitle: "Now Playing" }} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} />
+
+        </Stack.Navigator>
+    )
+}
+
+const SearchRoutes = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} />
+
+        </Stack.Navigator>
+    )
+}
+
+const GenreRoutes = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Genres" component={Genres} options={{ headerShown: false }} />
+            <Stack.Screen name="MovieDetail" component={MovieDetail} />
+            <Stack.Screen name="GenreList" component={GenreList} />
+        </Stack.Navigator>
+    )
+}
 
 function BottomTabs() {
     return (
@@ -18,7 +52,7 @@ function BottomTabs() {
         >
             <Tab.Screen
                 name="Home"
-                component={Home}
+                component={HomeRoutes}
                 options={{
                     tabBarLabel: 'Home',
                     tabBarIcon: () => (
@@ -27,8 +61,8 @@ function BottomTabs() {
                 }}
             />
             <Tab.Screen
-                name="Notifications"
-                component={Search}
+                name="Search"
+                component={SearchRoutes}
                 options={{
                     tabBarLabel: 'Search',
                     tabBarIcon: () => (
@@ -38,7 +72,7 @@ function BottomTabs() {
             />
             <Tab.Screen
                 name="Genres"
-                component={Genres}
+                component={GenreRoutes}
                 options={{
                     tabBarLabel: 'Genres',
                     tabBarIcon: () => (
