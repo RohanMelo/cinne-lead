@@ -6,6 +6,10 @@
   A React Native mobile client for TheMovieDB. Displays movies that are now playing in theaters, lets the user search movies by movie name or genres. It was made with accessibility in mind, it is TalkBack and font scaling friendly with high contrast colors.
 </h4>
 
+<p align="center">
+  <img src="assets/cinne.jpg" alt="Cinne Lead screenshots">  
+</p>
+
 ## 📑How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v12.18.2](https//nodejs.org) or higher + [Yarn v2.0](https://yarnpkg.com) or higher installed on your computer and [Expo SDK38](https://expo.io) on your mobile phone. You will also need an API Key from [TheMovieDB](https://www.themoviedb.org/). From your command line:
