@@ -1,122 +1,132 @@
-import * as React from 'react'
-import { View, StyleSheet, Image } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import * as React from "react";
+import { View, StyleSheet, Image } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
-import { CustomText, CustomTextBold } from '../utils/CustomText'
+import { CustomText, CustomTextBold } from "../utils/CustomText";
 
 const MovieDetail = ({ route, navigation }) => {
+  const {
+    title,
+    overview,
+    backdrop_path,
+    release_date,
+    vote_average
+  } = route.params;
+  let imgUrl = "http://image.tmdb.org/t/p/w300/" + backdrop_path;
 
-    const { title, overview, backdrop_path, release_date, vote_average } = route.params
-    let imgUrl = 'http://image.tmdb.org/t/p/w300/' + backdrop_path
+  return (
+    <ScrollView style={styles.container}>
+      <CustomTextBold style={styles.title}>{title}</CustomTextBold>
 
-    return (
-        <ScrollView style={styles.container}>
-            <CustomTextBold style={styles.title}>{title}</CustomTextBold>
+      {backdrop_path && (
+        <View
+          style={styles.imageContainer}
+          accessibilityLabel={`Movie ${title} image`}
+        >
+          <Image source={{ uri: imgUrl }} style={styles.cardImage} />
+        </View>
+      )}
 
-            {backdrop_path && <View style={styles.imageContainer} accessibilityLabel={`Movie ${title} image`}>
-                <Image source={{ uri: imgUrl }} style={styles.cardImage} />
-            </View>}
+      {/* Overview Section */}
 
-            {/* Overview Section */}
+      <View style={styles.sectionTextContainer}>
+        <View
+          style={styles.verticalTextContainer}
+          accessibilityLabel={`Overview for movie ${title}`}
+        >
+          <CustomTextBold style={styles.verticalText}>Overview</CustomTextBold>
+        </View>
+        <View style={styles.horizontalTextContainer}>
+          <CustomText style={styles.horizontalText}>{overview}</CustomText>
+        </View>
+      </View>
 
-            <View style={styles.sectionTextContainer}>
-                <View
-                    style={styles.verticalTextContainer}
-                    accessibilityLabel={`Overview for movie ${title}`}
-                >
-                    <CustomTextBold style={styles.verticalText} >Overview</CustomTextBold>
-                </View>
-                <View style={styles.horizontalTextContainer} >
-                    <CustomText style={styles.horizontalText}>{overview}</CustomText>
-                </View>
-            </View>
+      {/* Date Section */}
 
-            {/* Date Section */}
+      <View style={styles.sectionTextContainer}>
+        <View style={styles.verticalTextContainer}>
+          <CustomTextBold style={styles.nonVerticalText}>Date</CustomTextBold>
+        </View>
+        <View style={styles.horizontalTextContainer}>
+          <CustomText style={styles.horizontalText}>{release_date}</CustomText>
+        </View>
+      </View>
 
-            <View style={styles.sectionTextContainer}>
-                <View style={styles.verticalTextContainer}>
-                    <CustomTextBold style={styles.nonVerticalText}>Date</CustomTextBold>
-                </View>
-                <View style={styles.horizontalTextContainer}>
-                    <CustomText style={styles.horizontalText}>{release_date}</CustomText>
-                </View>
-            </View>
+      {/* Rating section */}
 
-            {/* Rating section */}
-
-            <View style={styles.sectionTextContainer}>
-                <View style={styles.verticalTextContainer}>
-                    <CustomTextBold style={styles.nonVerticalText}>Rating</CustomTextBold>
-                </View>
-                <View style={styles.horizontalTextContainer}>
-                    <CustomText style={styles.horizontalText} accessibilityHint={`${vote_average} out of ten`}>{vote_average}/10</CustomText>
-                </View>
-            </View>
-
-        </ScrollView>
-    )
-}
+      <View style={styles.sectionTextContainer}>
+        <View style={styles.verticalTextContainer}>
+          <CustomTextBold style={styles.nonVerticalText}>Rating</CustomTextBold>
+        </View>
+        <View style={styles.horizontalTextContainer}>
+          <CustomText
+            style={styles.horizontalText}
+            accessibilityHint={`${vote_average} out of ten`}
+          >
+            {vote_average}
+            /10
+          </CustomText>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        paddingTop: 10,
-        backgroundColor: '#f5f5f5',
-        padding: 10
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    paddingTop: 10,
+    backgroundColor: "#f5f5f5",
+    padding: 10
+  },
+  cardImage: {
+    width: 300,
+    height: 169,
+    marginBottom: 10,
+    marginTop: 5
+  },
+  horizontalTextContainer: {
+    flex: 7,
+    padding: 10,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  horizontalText: {
+    fontSize: 15
+  },
+  verticalText: {
+    transform: [{ rotate: "-90deg" }],
+    color: "white",
+    fontSize: 15
+  },
+  nonVerticalText: {
+    color: "white",
+    fontSize: 15,
+    padding: 8
+  },
+  sectionTextContainer: {
+    flexDirection: "row",
+    marginBottom: 10
+  },
+  verticalTextContainer: {
+    flex: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+    flexWrap: "wrap"
+  },
+  imageContainer: {
+    flex: 1,
+    alignItems: "center"
+  },
+  title: {
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 5
+  }
+});
 
-    },
-    cardImage: {
-        width: 300,
-        height: 169,
-        marginBottom: 10,
-        marginTop: 5
-    },
-    horizontalTextContainer: {
-        flex: 7,
-        padding: 10,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center'
-
-    },
-    horizontalText: {
-        fontSize: 15,
-    },
-    verticalText: {
-        transform: [{ rotate: '-90deg' }],
-        color: 'white',
-        fontSize: 15
-
-    },
-    nonVerticalText: {
-        color: 'white',
-        fontSize: 15,
-        padding: 8
-
-    },
-    sectionTextContainer: {
-        flexDirection: 'row',
-        marginBottom: 10
-
-    },
-    verticalTextContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'black',
-        flexWrap: 'wrap'
-    },
-    imageContainer: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    title: {
-        fontSize: 18,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginBottom: 5
-    }
-})
-
-export default MovieDetail
+export default MovieDetail;

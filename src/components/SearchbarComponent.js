@@ -1,30 +1,29 @@
-import * as React from 'react';
-import { Searchbar } from 'react-native-paper';
-import { useDispatch } from 'react-redux'
+import * as React from "react";
+import { Searchbar } from "react-native-paper";
+import { useDispatch } from "react-redux";
 
-import { searchTermAction } from '../redux/store'
-
+import { searchTermAction } from "../redux/store";
 
 const SearchbarComponent = ({ handleIconPress }) => {
-    const dispatch = useDispatch()
-    const [searchQuery, setSearchQuery] = React.useState('')
+  const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = React.useState("");
 
-    // Update local state and dispatch an action to change the global state
-    const onChangeSearch = (query) => {
-        setSearchQuery(query)
-        dispatch(searchTermAction(searchQuery))
-    }
+  // Update local state and dispatch an action to change the global state
+  const onChangeSearch = query => {
+    setSearchQuery(query);
+    dispatch(searchTermAction(searchQuery));
+  };
 
-    return (
-        <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            style={{ borderRadius: 30 }}
-            onIconPress={handleIconPress}
-            onSubmitEditing={handleIconPress}
-        />
-    );
+  return (
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+      style={{ borderRadius: 30 }}
+      onIconPress={handleIconPress}
+      onSubmitEditing={handleIconPress}
+    />
+  );
 };
 
 export default SearchbarComponent;

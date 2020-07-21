@@ -1,118 +1,111 @@
-import * as React from 'react'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { createStackNavigator } from '@react-navigation/stack'
+import * as React from "react";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import MovieDetail from '../screens/MovieDetail'
-import Home from '../screens/Home'
-import Search from '../screens/Search'
-import GenreList from '../screens/GenreList'
-import Genres from '../screens/Genres'
+import MovieDetail from "../screens/MovieDetail";
+import Home from "../screens/Home";
+import Search from "../screens/Search";
+import GenreList from "../screens/GenreList";
+import Genres from "../screens/Genres";
 
-const Tab = createMaterialBottomTabNavigator()
-const Stack = createStackNavigator()
+const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
 
 // 3 stack navigators for the Home, Search and Genre screens - gives access to MovieDetail and GenreList. Also a BottomTab navigator as the main navigation component of the App.
 
 const HomeRoutes = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="MovieDetail"
-                component={MovieDetail}
-                options={{ headerTitle: "Movie Details" }}
-            />
-
-        </Stack.Navigator>
-    )
-}
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+        options={{ headerTitle: "Movie Details" }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const SearchRoutes = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Search"
-                component={Search}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="MovieDetail"
-                component={MovieDetail}
-                options={{ headerTitle: "Movie Details" }}
-            />
-
-        </Stack.Navigator>
-    )
-}
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+        options={{ headerTitle: "Movie Details" }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const GenreRoutes = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Genres"
-                component={Genres}
-                options={{ headerTitle: "Browse by Genre" }}
-            />
-            <Stack.Screen
-                name="MovieDetail"
-                component={MovieDetail}
-                options={{ headerTitle: "Movie Details" }}
-            />
-            <Stack.Screen
-                name="GenreList"
-                component={GenreList}
-                options={({ route }) => ({ title: route.params.genreName + ' Movies' })}
-            />
-        </Stack.Navigator>
-    )
-}
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Genres"
+        component={Genres}
+        options={{ headerTitle: "Browse by Genre" }}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+        options={{ headerTitle: "Movie Details" }}
+      />
+      <Stack.Screen
+        name="GenreList"
+        component={GenreList}
+        options={({ route }) => ({ title: route.params.genreName + " Movies" })}
+      />
+    </Stack.Navigator>
+  );
+};
 
 function BottomTabs() {
-    return (
-        <Tab.Navigator
-            initialRouteName="Home"
-            activeColor="#e91e63"
-            labelStyle={{ fontSize: 12 }}
-            style={{ backgroundColor: 'tomato' }}
-        >
-            <Tab.Screen
-                name="Home"
-                component={HomeRoutes}
-                options={{
-                    tabBarLabel: 'Home',
-                    tabBarIcon: () => (
-                        <MaterialCommunityIcons name="home" size={26} />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="Search"
-                component={SearchRoutes}
-                options={{
-                    tabBarLabel: 'Search',
-                    tabBarIcon: () => (
-                        <MaterialCommunityIcons name="search-web" size={26} />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="Genres"
-                component={GenreRoutes}
-                options={{
-                    tabBarLabel: 'Genres',
-                    tabBarIcon: () => (
-                        <MaterialCommunityIcons name="movie" size={26} />
-                    ),
-                }}
-            />
-        </Tab.Navigator>
-    );
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#e91e63"
+      labelStyle={{ fontSize: 12 }}
+      style={{ backgroundColor: "tomato" }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeRoutes}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: () => <MaterialCommunityIcons name="home" size={26} />
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchRoutes}
+        options={{
+          tabBarLabel: "Search",
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="search-web" size={26} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Genres"
+        component={GenreRoutes}
+        options={{
+          tabBarLabel: "Genres",
+          tabBarIcon: () => <MaterialCommunityIcons name="movie" size={26} />
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
-export default BottomTabs
-
+export default BottomTabs;
