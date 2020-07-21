@@ -10,7 +10,16 @@ const MovieList = ({ movies }) => {
         <View>
             {movies && movies.map((movie) => {
                 return (
-                    <MovieListItem key={movie.id} title={movie.title} id={movie.id} overview={movie.overview} poster_path={movie.poster_path} release_date={movie.release_date} vote_average={movie.vote_average} backdrop_path={movie.backdrop_path} />
+                    <MovieListItem
+                        key={movie.id}
+                        title={movie.title}
+                        overview={movie.overview}
+                        poster_path={movie.poster_path}
+                        release_date={movie.release_date}
+                        vote_average={movie.vote_average}
+                        backdrop_path={movie.backdrop_path}
+                        importantForAccessibility={true}
+                    />
                 )
             })}
         </View>

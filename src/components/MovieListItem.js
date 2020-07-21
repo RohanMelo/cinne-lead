@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, Image } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
 import { CustomText, CustomTextBold } from '../utils/CustomText'
 
 
+const MovieListItem = ({ title, overview, poster_path, release_date, vote_average, backdrop_path }) => {
 
-// http://image.tmdb.org/t/p/w185/
-
-const MovieListItem = ({ title, id, overview, poster_path, release_date, vote_average, backdrop_path }) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation()
     let imgUrl = 'http://image.tmdb.org/t/p/w92/' + poster_path
 
     return (
@@ -22,14 +20,23 @@ const MovieListItem = ({ title, id, overview, poster_path, release_date, vote_av
             release_date,
             vote_average
         })}>
-            <View style={styles.container}>
+            <View
+                style={styles.container}
+                accessibilityHint={`Movie Selected: ${title}. Double tap for movie details.`}
+            >
                 <View>
 
-                    <Image source={{ uri: imgUrl }} style={styles.cardImage} />
+                    <Image
+                        source={{ uri: imgUrl }}
+                        style={styles.cardImage}
+                    />
                 </View>
                 <View style={styles.cardText}>
                     <CustomTextBold style={styles.title}>{title}</CustomTextBold>
-                    <CustomText style={styles.overview} numberOfLines={3}>{overview}</CustomText>
+                    <CustomText
+                        style={styles.overview}
+                        numberOfLines={3}
+                    >{overview}</CustomText>
                 </View>
 
             </View>

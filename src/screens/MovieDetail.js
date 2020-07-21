@@ -5,23 +5,32 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { CustomText, CustomTextBold } from '../utils/CustomText'
 
 const MovieDetail = ({ route, navigation }) => {
+
     const { title, overview, backdrop_path, release_date, vote_average } = route.params
     let imgUrl = 'http://image.tmdb.org/t/p/w300/' + backdrop_path
+
     return (
         <ScrollView style={styles.container}>
 
-            <View style={styles.imageContainer}>
+            <View style={styles.imageContainer} accessibilityLabel={`Movie ${title} image`}>
                 <Image source={{ uri: imgUrl }} style={styles.cardImage} />
             </View>
 
+            {/* Overview Section */}
+
             <View style={styles.sectionTextContainer}>
-                <View style={styles.verticalTextContainer}>
-                    <CustomTextBold style={styles.verticalText}>Overview</CustomTextBold>
+                <View
+                    style={styles.verticalTextContainer}
+                    accessibilityLabel={`Overview for movie ${title}`}
+                >
+                    <CustomTextBold style={styles.verticalText} >Overview</CustomTextBold>
                 </View>
-                <View style={styles.horizontalTextContainer}>
+                <View style={styles.horizontalTextContainer} >
                     <CustomText style={styles.horizontalText}>{overview}</CustomText>
                 </View>
             </View>
+
+            {/* Date Section */}
 
             <View style={styles.sectionTextContainer}>
                 <View style={styles.verticalTextContainer}>
@@ -32,12 +41,14 @@ const MovieDetail = ({ route, navigation }) => {
                 </View>
             </View>
 
+            {/* Rating section */}
+
             <View style={styles.sectionTextContainer}>
                 <View style={styles.verticalTextContainer}>
                     <CustomTextBold style={styles.nonVerticalText}>Rating</CustomTextBold>
                 </View>
                 <View style={styles.horizontalTextContainer}>
-                    <CustomText style={styles.horizontalText}>{vote_average}/10</CustomText>
+                    <CustomText style={styles.horizontalText} accessibilityHint={`${vote_average} out of ten`}>{vote_average}/10</CustomText>
                 </View>
             </View>
 

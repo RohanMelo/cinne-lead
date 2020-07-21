@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux'
 
 import { searchTermAction } from '../redux/store'
 
+
 const SearchbarComponent = ({ handleIconPress }) => {
     const dispatch = useDispatch()
     const [searchQuery, setSearchQuery] = React.useState('')
 
-
+    // Update local state and dispatch an action to change the global state
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         dispatch(searchTermAction(searchQuery))
