@@ -8,7 +8,7 @@
 
 ## 📑How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v12.18.2](https//nodejs.org) or higher + [Yarn v2.0](https://yarnpkg.com) or higher installed on your computer and [Expo SDK38](https://expo.io) on your mobile phone. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v12.18.2](https//nodejs.org) or higher + [Yarn v2.0](https://yarnpkg.com) or higher installed on your computer and [Expo SDK38](https://expo.io) on your mobile phone. You will also need an API Key from [TheMovieDB](https://www.themoviedb.org/). From your command line:
 
 ```bash
 # Clone this repository
@@ -19,6 +19,9 @@ $ cd cinne-lead
 
 # Install dependencies
 $ yarn
+
+# Insert your API Key on the environment.js file under "dev"
+$ apiKey: Enter MovieDB API Key here to run the app
 
 # Run the app
 $ yarn start

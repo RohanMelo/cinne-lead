@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: 92,
-    height: 138
+    height: 138,
+    borderRadius: 10
   },
   cardText: {
     flexShrink: 1,
@@ -75,7 +76,8 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   overview: {
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginTop: 5
   }
 });
 
