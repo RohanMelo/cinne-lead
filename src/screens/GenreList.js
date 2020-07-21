@@ -6,13 +6,12 @@ import MovieList from '../components/MovieList'
 import useMovieFetcher from '../services/useMovieFetcher'
 import getEnvVars from '../../environment'
 import LoadingSpinner from '../components/LoadingSpinner'
-import ErrorMessage from '../utils/ErrorMessage'
 
 const { apiKey } = getEnvVars()
 
 const GenreList = ({ route }) => {
 
-    const [{ data, isLoading, isError }, doFetch] = useMovieFetcher()
+    const [{ data, isLoading }, doFetch] = useMovieFetcher()
     const { genreId } = route.params
 
     useEffect(() => {
@@ -24,7 +23,7 @@ const GenreList = ({ route }) => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
             <ScrollView>
                 {data && <MovieList movies={data.results} />}
             </ScrollView>

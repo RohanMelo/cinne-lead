@@ -27,7 +27,7 @@ const Search = () => {
 
     return (
 
-        <SafeAreaView>
+        <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
                 <SearchbarComponent handleIconPress={handleIconPress} />
             </View>
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 20,
         textAlign: 'center'
+    },
+    safeArea: {
+        flex: 1
     }
 })
 

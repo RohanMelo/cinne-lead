@@ -9,7 +9,8 @@ import { CustomText, CustomTextBold } from '../utils/CustomText'
 const MovieListItem = ({ title, overview, poster_path, release_date, vote_average, backdrop_path }) => {
 
     const navigation = useNavigation()
-    let imgUrl = 'http://image.tmdb.org/t/p/w92/' + poster_path
+    let imgUri = 'http://image.tmdb.org/t/p/w92/' + poster_path
+    let noPosterUri = 'https://via.placeholder.com/92x138.png?text=No+Poster'
 
     return (
 
@@ -25,20 +26,21 @@ const MovieListItem = ({ title, overview, poster_path, release_date, vote_averag
                 accessibilityHint={`Movie Selected: ${title}. Double tap for movie details.`}
             >
                 <View>
-
                     <Image
-                        source={{ uri: imgUrl }}
+                        source={poster_path ? { uri: imgUri } : { uri: noPosterUri }}
                         style={styles.cardImage}
                     />
                 </View>
                 <View style={styles.cardText}>
-                    <CustomTextBold style={styles.title}>{title}</CustomTextBold>
+                    <CustomTextBold
+                        style={styles.title}
+                        numberOfLines={2}
+                    >{title}</CustomTextBold>
                     <CustomText
                         style={styles.overview}
                         numberOfLines={3}
                     >{overview}</CustomText>
                 </View>
-
             </View>
         </TouchableOpacity>
 

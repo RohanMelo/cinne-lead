@@ -25,7 +25,7 @@ const HomeRoutes = () => {
             <Stack.Screen
                 name="MovieDetail"
                 component={MovieDetail}
-                options={({ route }) => ({ title: route.params.title })}
+                options={{ headerTitle: "Movie Details" }}
             />
 
         </Stack.Navigator>
@@ -43,7 +43,7 @@ const SearchRoutes = () => {
             <Stack.Screen
                 name="MovieDetail"
                 component={MovieDetail}
-                options={({ route }) => ({ title: route.params.title })}
+                options={{ headerTitle: "Movie Details" }}
             />
 
         </Stack.Navigator>
@@ -61,7 +61,7 @@ const GenreRoutes = () => {
             <Stack.Screen
                 name="MovieDetail"
                 component={MovieDetail}
-                options={({ route }) => ({ title: route.params.title })}
+                options={{ headerTitle: "Movie Details" }}
             />
             <Stack.Screen
                 name="GenreList"

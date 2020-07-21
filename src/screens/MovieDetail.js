@@ -11,10 +11,11 @@ const MovieDetail = ({ route, navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
+            <CustomTextBold style={styles.title}>{title}</CustomTextBold>
 
-            <View style={styles.imageContainer} accessibilityLabel={`Movie ${title} image`}>
+            {backdrop_path && <View style={styles.imageContainer} accessibilityLabel={`Movie ${title} image`}>
                 <Image source={{ uri: imgUrl }} style={styles.cardImage} />
-            </View>
+            </View>}
 
             {/* Overview Section */}
 
@@ -109,6 +110,12 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         alignItems: 'center'
+    },
+    title: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: 5
     }
 })
 
